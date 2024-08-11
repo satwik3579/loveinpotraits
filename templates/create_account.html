@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block content %}
+<div class="background" style="background-image: url('{{ url_for('static', filename='images/create-account-bg.jpg') }}');">
+    <h1>Create an Account</h1>
+    <form>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Create Account">
+    </form>
+</div>
+{% endblock %}

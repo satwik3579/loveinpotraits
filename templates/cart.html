@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<h1>Your Cart</h1>
+<div class="cart">
+    {% if cart %}
+    <ul>
+        {% for item in cart %}
+        <li>
+            <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.title }}" width="50">
+            <strong>{{ item.title }}</strong> - {{ item.price }}
+        </li>
+        {% endfor %}
+    </ul>
+    <p><a href="#" class="btn btn-primary">Proceed to Checkout</a></p>
+    {% else %}
+    <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}

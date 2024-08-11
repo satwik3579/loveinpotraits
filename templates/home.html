@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}Home - Pravalika's Art Gallery{% endblock %}
+
+{% block content %}
+<div class="background" style="background-image: url('{{ url_for('static', filename='images/home-bg.jpg') }}');">
+    <div class="welcome-text">
+        <h1>Welcome to LoveInGlassPortraits</h1>
+    </div>
+    
+    <!-- Rakhi Offer Section -->
+    <div class="offer-section">
+        <h2>Special Rakhi Offer!</h2>
+        <p>Get 50% off on all Portraits. Limited time offer!</p>
+    </div>
+    
+    <div class="gallery">
+        {% for drawing in drawings %}
+        <div class="art-piece">
+            <img src="{{ url_for('static', filename='images/' + drawing.image) }}" alt="{{ drawing.title }}">
+            <h2>{{ drawing.title }}</h2>
+            {% set price = drawing.price|float %}
+            <p class="price">
+                Original Price: ₹{{ price }}<br>
+                Offer Price: ₹{{ price * 0.5 }} <!-- Calculate 50% off -->
+            </p>
+            <div class="actions">
+                <a href="{{ url_for('add_to_cart', drawing_id=drawing.id) }}" class="btn">Add to Cart</a>
+                <a href="{{ url_for('buy_now', drawing_id=drawing.id) }}" class="btn btn-primary">Buy Now</a>
+            </div>
+        </div>        
+        {% endfor %}
+    </div>
+    
+    <div class="info-section">
+        <div class="info-box">
+            <img src="https://sandandsun.online/wp-content/themes/wc-fashion/assets/img/tax-free.png" alt="Free Delivery">
+            <h6>Free Delivery</h6>
+            <p>For all orders over ₹8999/-</p>
+        </div>
+        <div class="info-box">
+            <img src="https://sandandsun.online/wp-content/themes/wc-fashion/assets/img/delivery-status.png" alt="30 Days Return">
+            <h6>30 Days Return</h6>
+            <p>No questions asked</p>
+        </div>
+        <div class="info-box">
+            <img src="https://sandandsun.online/wp-content/themes/wc-fashion/assets/img/credit-card-1.png" alt="Secure Payments">
+            <h6>Secure Payments</h6>
+            <p>100% secure payment</p>
+        </div>
+        <div class="info-box">
+            <img src="https://sandandsun.online/wp-content/themes/wc-fashion/assets/img/support-2.png" alt="24/7 Support">
+            <h6>24/7 Support</h6>
+            <p>Dedicated support</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
